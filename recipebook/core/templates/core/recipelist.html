@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Listing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .recipe {
+            border-bottom: 1px solid #ddd;
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .recipe img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        .recipe-info {
+            flex-grow: 1;
+        }
+
+        .recipe h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .recipe p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .recipe-actions {
+            margin-left: auto;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Recipe Listing</h1>
+        <div class="recipe">
+            <img src="./recipeimage/recipeimage.jpeg" alt="Recipe Image">
+            <div class="recipe-info">
+                <h2>Recipe Name</h2>
+                <p>Estimated Cooking Time: 30 minutes</p>
+            </div>
+            <div class="recipe-actions">
+                <a href="./recipe.html"><button class="btn">View Recipe</button></a>
+            </div>
+        </div>
+        <!-- Repeat the above recipe block for each recipe -->
+    </div>
+</body>
+</html>

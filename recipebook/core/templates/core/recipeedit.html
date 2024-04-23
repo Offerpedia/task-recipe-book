@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .recipe {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .recipe h2 {
+            margin-top: 0;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #dc3545;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Recipe Page</h1>
+
+        <!-- Form for creating/updating recipe -->
+        <form id="recipe-form">
+            <input type="hidden" id="recipe-id" name="recipe-id" value="">
+            <label for="recipe-name">Recipe Name:</label>
+            <input type="text" id="recipe-name" name="recipe-name" required>
+            <label for="recipe-image">Recipe Image URL:</label>
+            <input type="text" id="recipe-image" name="recipe-image" required>
+            <label for="recipe-cooking-time">Cooking Time (minutes):</label>
+            <input type="number" id="recipe-cooking-time" name="recipe-cooking-time" required>
+            <label for="recipe-ingredients">Ingredients:</label>
+            <textarea id="recipe-ingredients" name="recipe-ingredients" required></textarea>
+            <input type="submit" value="Save Recipe">
+        </form>
+
+        <!-- Recipe display and delete button -->
+        <div class="recipe" id="recipe-display">
+            <h2 id="display-name"></h2>
+            <p id="display-image"></p>
+            <p id="display-cooking-time"></p>
+            <p id="display-ingredients"></p>
+            <button class="btn" id="delete-recipe">Delete Recipe</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for handling form submission, displaying recipe, and deleting recipe
+        document.getElementById('recipe-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Fetch form data
+            const recipeId = document.getElementById('recipe-id').value;
+            const recipeName = document.getElementById('recipe-name').value;
+            const recipeImage = document.getElementById('recipe-image').value;
+            const recipeCookingTime = document.getElementById('recipe-cooking-time').value;
+            const recipeIngredients = document.getElementById('recipe-ingredients').value;
+            // Perform form submission (e.g., AJAX request to server)
+            // Display the saved/updated recipe (replace the below code with actual display logic)
+            document.getElementById('display-name').textContent = "Recipe Name: " + recipeName;
+            document.getElementById('display-image').textContent = "Recipe Image: " + recipeImage;
+            document.getElementById('display-cooking-time').textContent = "Cooking Time: " + recipeCookingTime + " minutes";
+            document.getElementById('display-ingredients').textContent = "Ingredients: " + recipeIngredients;
+        });
+
+        document.getElementById('delete-recipe').addEventListener('click', function() {
+            // Fetch recipe ID
+            const recipeId = document.getElementById('recipe-id').value;
+            // Perform delete operation (e.g., AJAX request to server)
+            // After successful deletion, redirect or display a message
+            alert("Recipe deleted successfully.");
+            // Clear the recipe display
+            document.getElementById('display-name').textContent = "";
+            document.getElementById('display-image').textContent = "";
+            document.getElementById('display-cooking-time').textContent = "";
+            document.getElementById('display-ingredients').textContent = "";
+        });
+    </script>
+</body>
+</html>
+

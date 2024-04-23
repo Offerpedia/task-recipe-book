@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Listing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .recipe {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .recipe img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .recipe h2 {
+            margin-top: 0;
+        }
+        .recipe .rating {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #FFD700; /* gold color for stars */
+        }
+        .filter {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .filter select {
+            padding: 8px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Recipe Listing</h1>
+
+        <div class="filter">
+            <label for="ingredient">Filter by Ingredient:</label>
+            <select id="ingredient">
+                <option value="all">All</option>
+                <option value="pasta">Pasta</option>
+                <option value="chicken">Chicken</option>
+                <option value="vegetables">Vegetables</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+
+        <div class="recipe">
+            <h2>Spaghetti Carbonara</h2>
+            <img src="./recipeimage/spaghetti.jpeg" alt="Spaghetti Carbonara">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et fringilla dolor. Aliquam erat volutpat.</p>
+            <div class="rating">Rating: 4.5 stars</div>
+            <!-- Add a link/button for viewing the recipe -->
+        </div>
+
+        <div class="recipe">
+            <h2>Grilled Chicken Salad</h2>
+            <img src="./recipeimage/griledchiknsalad.jpeg" alt="Grilled Chicken Salad">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et fringilla dolor. Aliquam erat volutpat.</p>
+            <div class="rating">Rating: 4.2 stars</div>
+            <!-- Add a link/button for viewing the recipe -->
+        </div>
+
+        <!-- Add more recipe entries as needed -->
+
+    </div>
+</body>
+</html>
