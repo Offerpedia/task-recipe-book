@@ -7,79 +7,57 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            background-color: #f4f4f4;
         }
-        .login-container {
-            background-color: #fff;
+        .container {
+            width: 400px;
+            margin: 100px auto;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
         }
-        .login-container h2 {
-            text-align: center;
-        }
-        .login-container form {
-            margin-top: 20px;
-        }
-        .login-container form input[type="text"],
-        .login-container form input[type="password"] {
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
             width: 100%;
             padding: 10px;
-            margin-bottom: 10px;
+            margin: 8px 0;
+            display: inline-block;
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
         }
-        .login-container form input[type="submit"] {
-            width: 100%;
-            padding: 10px;
+        input[type="submit"] {
             background-color: #4caf50;
-            color: #fff;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s;
         }
-        .login-container form input[type="submit"]:hover {
+        input[type="submit"]:hover {
             background-color: #45a049;
         }
     </style>
 </head>
 <body>
-
-<div class="login-container">
-    <h2>Login</h2>
-    <form id="loginForm" action="#">
-        <input type="text" id="username" name="username" placeholder="Username">
-        <input type="password" id="password" name="password" placeholder="Password">
-        <input type="submit" value="Login">
-    </form>
-</div>
-
-<script>
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
-        event.preventDefault();
-        var username = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
-
-        // Simple check for demonstration purpose
-        if (username === "customer" && password === "password") {
-            // Redirect customer to recipes listing page
-            window.location.href = "customer_recipes_listing_page.html";
-        } else if (username === "chef" && password === "password") {
-            // Redirect chef to recipes listing page with create option
-            window.location.href = "chef_recipes_listing_page.html";
-        } else {
-            alert("Invalid username or password");
-        }
-    });
-</script>
-
+    <div class="container">
+        <h2>Login</h2>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br>
+            <input type="submit" value="Login">
+        </form>
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+    </div>
 </body>
 </html>

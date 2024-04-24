@@ -4,86 +4,276 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Listing</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f2f2f2;
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-        }
-        .recipe {
-            margin-bottom: 20px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-        .recipe img {
-            max-width: 100%;
-            border-radius: 8px;
-        }
-        .recipe h2 {
-            margin-top: 0;
-        }
-        .recipe .rating {
-            margin-top: 10px;
-            font-size: 18px;
-            color: #FFD700; /* gold color for stars */
-        }
-        .filter {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .filter select {
-            padding: 8px;
-            font-size: 16px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.recipe-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.recipe-image {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.recipe-name {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.cooking-time {
+    margin-top: 5px;
+    font-size: 16px;
+}
+/* Style for the "Add Recipe" button */
+#addRecipeBtn {
+    background-color: #4CAF50; /* Green background color */
+    color: white; /* White text color */
+    padding: 10px 20px; /* Padding around the button text */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Cursor on hover */
+    font-size: 16px; /* Font size */
+}
+
+/* Style for the "Add Recipe" button on hover */
+#addRecipeBtn:hover {
+    background-color: #45a049; /* Darker green background color */
+}
+
+
+.edit-btn,
+.delete-btn {
+    padding: 8px 16px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    background-color: #45a049;
+}
+
+.modal {
+        display: none; /* Hide the modal by default */
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4); /* Black background with opacity */
+    }
+
+    /* Style for the modal content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* Center modal vertically and horizontally */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%;
+        max-width: 500px; /* Set max width for modal */
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        box-sizing: border-box;
+    }
+
+    /* Close button style */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    /* Close button style on hover */
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Form label style */
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    /* Form input style */
+    input[type="text"],
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    /* Submit button style */
+    button[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    /* Submit button style on hover */
+    button[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+
+    </style>
     <div class="container">
         <h1>Recipe Listing</h1>
-
-        <div class="filter">
-            <label for="ingredient">Filter by Ingredient:</label>
-            <select id="ingredient">
-                <option value="all">All</option>
-                <option value="pasta">Pasta</option>
-                <option value="chicken">Chicken</option>
-                <option value="vegetables">Vegetables</option>
-                <!-- Add more options as needed -->
-            </select>
-        </div>
-
-        <div class="recipe">
-            <h2>Spaghetti Carbonara</h2>
-            <img src="./recipeimage/spaghetti.jpeg" alt="Spaghetti Carbonara">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et fringilla dolor. Aliquam erat volutpat.</p>
-            <div class="rating">Rating: 4.5 stars</div>
-            <!-- Add a link/button for viewing the recipe -->
-        </div>
-
-        <div class="recipe">
-            <h2>Grilled Chicken Salad</h2>
-            <img src="./recipeimage/griledchiknsalad.jpeg" alt="Grilled Chicken Salad">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et fringilla dolor. Aliquam erat volutpat.</p>
-            <div class="rating">Rating: 4.2 stars</div>
-            <!-- Add a link/button for viewing the recipe -->
-        </div>
-
-        <!-- Add more recipe entries as needed -->
-
+        <button id="addRecipeBtn">Add Recipe</button>
+        <div id="recipeList"></div>
     </div>
+    <div id="recipeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Add Recipe</h2>
+            <form id="recipeForm">
+                <label for="recipeName">Recipe Name:</label>
+                <input type="text" id="recipeName" name="recipeName" required>
+                <label for="recipeImage">Recipe Image URL:</label>
+                <input type="text" id="recipeImage" name="recipeImage" required>
+                <label for="cookingTime">Estimated Cooking Time (minutes):</label>
+                <input type="number" id="cookingTime" name="cookingTime" required>
+                <button type="submit" id="saveRecipeBtn">Save Recipe</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        // Recipe modal
+const modal = document.getElementById("recipeModal");
+const addRecipeBtn = document.getElementById("addRecipeBtn");
+const closeBtn = document.querySelector(".close");
+
+addRecipeBtn.addEventListener("click", () => {
+    modal.style.display = "block";
+});
+
+closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+    if (e.target == modal) {
+        modal.style.display = "none";
+    }
+});
+
+// Recipe form
+const recipeForm = document.getElementById("recipeForm");
+recipeForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const recipeName = document.getElementById("recipeName").value;
+    const recipeImage = document.getElementById("recipeImage").value;
+    const cookingTime = document.getElementById("cookingTime").value;
+    const recipe = {
+        name: recipeName,
+        image: recipeImage,
+        cookingTime: cookingTime
+    };
+    // Send recipe data to backend for creation/update
+    // You would typically make an AJAX request here
+    console.log(recipe);
+    // Clear form fields
+    recipeForm.reset();
+    // Close modal
+    modal.style.display = "none";
+});
+
+// Recipe list (dynamic data)
+const recipeList = document.getElementById("recipeList");
+
+// Fetch recipe data from backend and populate the recipe list
+// You would typically make an AJAX request to fetch recipes from backend
+
+// Example of recipe data
+const recipes = [
+    {
+        name: "Spaghetti Carbonara",
+        image: "spaghetti.jpg",
+        cookingTime: 20 // in minutes
+    },
+    {
+        name: "Grilled Chicken Salad",
+        image: "chicken_salad.jpg",
+        cookingTime: 30
+    }
+];
+
+recipes.forEach((recipe) => {
+    const recipeCard = document.createElement("div");
+    recipeCard.classList.add("recipe-card");
+    recipeCard.innerHTML = `
+        <img src="${recipe.image}" alt="${recipe.name}" class="recipe-image">
+        <h3 class="recipe-name">${recipe.name}</h3>
+        <p class="cooking-time">Estimated Cooking Time: ${recipe.cookingTime} minutes</p>
+        <button class="edit-btn">Edit</button>
+        <button class="delete-btn">Delete</button>
+    `;
+    recipeList.appendChild(recipeCard);
+});
+
+// Add functionality for edit and delete buttons (for chefs)
+const editButtons = document.querySelectorAll(".edit-btn");
+const deleteButtons = document.querySelectorAll(".delete-btn");
+
+editButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        // Handle edit functionality
+        console.log("Edit button clicked");
+    });
+});
+
+deleteButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        // Handle delete functionality
+        console.log("Delete button clicked");
+    });
+});
+
+    </script>
 </body>
 </html>

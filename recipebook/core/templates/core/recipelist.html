@@ -1,10 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Listing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -75,22 +76,72 @@
         .btn:hover {
             background-color: #0056b3;
         }
+
+        /* Additional CSS for star rating */
+        .star-rating {
+            font-size: 24px;
+            color: #ffcc00; /* Default color for stars */
+        }
+
+        .star-rating .fa {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .star-rating .fa:hover,
+        .star-rating .fa:hover ~ .fa {
+            color: #ffcc00; /* Color of stars on hover */
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Recipe Listing</h1>
-        <div class="recipe">
+        <div class="recipe" data-id="1">
             <img src="./recipeimage/recipeimage.jpeg" alt="Recipe Image">
             <div class="recipe-info">
                 <h2>Recipe Name</h2>
                 <p>Estimated Cooking Time: 30 minutes</p>
+                <div class="star-rating">
+                    <span class="fa fa-star" data-rating="1"></span>
+                    <span class="fa fa-star" data-rating="2"></span>
+                    <span class="fa fa-star" data-rating="3"></span>
+                    <span class="fa fa-star" data-rating="4"></span>
+                    <span class="fa fa-star" data-rating="5"></span>
+                </div>
             </div>
             <div class="recipe-actions">
-                <a href="./recipe.html"><button class="btn">View Recipe</button></a>
+                <button class="btn">View Recipe</button>
             </div>
         </div>
         <!-- Repeat the above recipe block for each recipe -->
     </div>
+
+    <script>
+        // JavaScript for star rating
+        document.addEventListener("DOMContentLoaded", function () {
+            const stars = document.querySelectorAll('.fa-star');
+
+            stars.forEach(function(star) {
+                star.addEventListener('click', function() {
+                    const rating = this.getAttribute('data-rating');
+                    const recipeId = this.closest('.recipe').getAttribute('data-id');
+
+                    // Simulate submitting the rating (you can replace this with actual API call)
+                    console.log(`User rated Recipe ${recipeId} with ${rating} stars`);
+
+                    // Update stars' color based on user's selection
+                    stars.forEach(function(s) {
+                        if (s.getAttribute('data-rating') <= rating) {
+                            s.style.color = '#ffcc00';
+                        } else {
+                            s.style.color = '';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
